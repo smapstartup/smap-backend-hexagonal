@@ -12,6 +12,7 @@
     <groupId>cat.smap.web</groupId>
     <artifactId>smap-backend-web</artifactId>
     <version>1.0.0-SNAPSHOT</version>
+    <description>Punt d'arrencada de l'aplicatiu i gestió de l'entrada de dades al Backend.</description>
     <url>https://maven.apache.org</url>
     <packaging>jar</packaging>
     <dependencies>

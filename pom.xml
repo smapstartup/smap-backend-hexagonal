@@ -10,8 +10,13 @@
     <packaging>pom</packaging>
     <name>smap-backend-modular</name>
     <description>Aplicació de backend modular i amb patró d'arquitectura hexagonal (ports &amp; adapters)</description>
+
     <modules>
         <module>smap-backend-web</module>
+        <module>smap-backend-application</module>
+        <module>smap-backend-infrastructure</module>
+        <module>smap-backend-domain</module>
+        <module>smap-backend-utils</module>
     </modules>
 
     <parent>
