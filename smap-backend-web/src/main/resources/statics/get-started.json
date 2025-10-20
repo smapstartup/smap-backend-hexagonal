@@ -1,0 +1,13 @@
+{
+  "project": "SMAP Starter Kit",
+  "version": "1.0.0-SNAPSHOT",
+  "features": [
+    "✔️ PostgreSQL amb test de connexió",
+    "✔️ Swagger UI via springdoc-openapi",
+    "✔️ Configuració multi-entorn (application.yml + application-dev.yml)",
+    "✔️ Logger personalitzat (SmapLogger)",
+    "✔️ Resolució de missatges (SmapMessageResolver)",
+    "✔️ Exemples de Models, DTOs i Mappers"
+  ],
+  "note": "Aquest endpoint només es mostra al perfil 'starter' per guiar projectes nous."
+}
