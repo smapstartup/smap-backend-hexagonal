@@ -2,9 +2,11 @@ package cat.smap.domain.ports.out;
 
 import cat.smap.domain.models.pojos.User;
 
-import java.util.Optional;
-
+/**
+ * Definim per contracte, les accions que el Service li podrà demanar al UserRepository i
+ * que aquest, haurà d'implementar per executar-les contra la Base de Dades.
+ */
 public interface UserAdapter {
-    Optional<User> findById(Long id);
-    Optional<User> save(User user);
+    User findById(Long id);
+    User save(User user);
 }

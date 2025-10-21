@@ -1,0 +1,16 @@
+spring:
+  datasource:
+    url: jdbc:postgresql://localhost:5432/backend
+    username: smapbcn
+    password: devpass
+  messages:
+    basename: i18n/common i18n/system
+    encoding: UTF-8
+    fallback-to-system-locale: false
+  jpa:
+    hibernate:
+      ddl-auto: update
+    show-sql: true
+    properties:
+      hibernate:
+        format_sql: true

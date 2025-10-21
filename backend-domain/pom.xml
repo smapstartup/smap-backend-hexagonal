@@ -5,7 +5,7 @@
     <modelVersion>4.0.0</modelVersion>
     <parent>
         <groupId>cat.smap.backend</groupId>
-        <artifactId>smap-backend-modular</artifactId>
+        <artifactId>smap-backend-hexagonal</artifactId>
         <version>1.0.0-SNAPSHOT</version>
     </parent>
 
@@ -15,6 +15,12 @@
     <description>Mòdul principal de domini. Conté les classes Java pur, que representen els models de la lògica de negoci.</description>
 
     <dependencies>
+        <!-- Spring Boot (només core, sense Web ni Data JPA) -->
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter</artifactId>
+        </dependency>
+
         <!-- Dependències mòduls propis -->
 
         <!--
@@ -35,10 +41,12 @@
             <version>1.0.0-SNAPSHOT</version>
         </dependency>
         <dependency>
-            <groupId>cat.smap.infrastructure</groupId>
-            <artifactId>backend-infrastructure</artifactId>
-            <version>1.0.0-SNAPSHOT</version>
-            <scope>compile</scope>
+            <groupId>org.springframework</groupId>
+            <artifactId>spring-context</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>org.mapstruct</groupId>
+            <artifactId>mapstruct</artifactId>
         </dependency>
     </dependencies>
 

@@ -1,6 +1,7 @@
 package cat.smap.infrastructure.entities;
 
 import jakarta.persistence.*;
+import org.hibernate.annotations.UuidGenerator;
 
 import java.util.UUID;
 
@@ -12,7 +13,7 @@ public class UserEntity {
     private Long id;
 
     @Column(unique = true)
-    @GeneratedValue(strategy = GenerationType.UUID)
+    @UuidGenerator
     private UUID uuid;
 
     @Column(unique = true, nullable = false)

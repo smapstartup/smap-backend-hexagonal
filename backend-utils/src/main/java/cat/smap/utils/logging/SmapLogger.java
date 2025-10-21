@@ -37,6 +37,9 @@ public class SmapLogger {
             case "[LOG]", "[DEBUG]" -> logger.debug(output);
             default -> logger.trace(output);
         }
+        if ( this.getLabel().equals("[DEBUG]") ) {
+            System.out.println(output);
+        }
     }
 
     private void writeLog(String source){
