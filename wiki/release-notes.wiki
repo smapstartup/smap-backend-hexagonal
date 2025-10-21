@@ -1,0 +1,2 @@
+## Ordenades de més recent a més antiga, detall de les diferents versions de cada desenvolupament.
+## Activar un cop el projecte estigui en fase BETA i comencin els desenvolupaments de millores, bugs i manteniment.
