@@ -10,7 +10,7 @@ import org.springframework.core.env.Environment;
 
 @SpringBootApplication(scanBasePackages = {
 //        "cat.smap.shared",
-//        "cat.smap.dto",
+//        "cat.smap.requests",
 //        "cat.smap.core",
 //        "cat.smap.infrastructure",
 //        "cat.smap.archived",
