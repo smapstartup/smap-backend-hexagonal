@@ -1,24 +1,21 @@
 package cat.smap.web;
 
+import cat.smap.utils.logging.LogChannel;
+import cat.smap.utils.logging.SmapLogger;
 import jakarta.annotation.PostConstruct;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
-import org.springframework.boot.autoconfigure.domain.EntityScan;
+import org.springframework.context.annotation.Import;
 import org.springframework.core.env.Environment;
-import org.springframework.data.jpa.repository.config.EnableJpaRepositories;
 
-@SpringBootApplication(scanBasePackages = {
-        "cat.smap.utils",
-        "cat.smap.application",
-        "cat.smap.domain",
-        "cat.smap.infrastructure",
-        "cat.smap.web"
-})
-@EnableJpaRepositories(basePackages = {
-        "cat.smap.infrastructure.repositories"
-})
-@EntityScan(basePackages = {
-        "cat.smap.infrastructure.entities"
+import java.util.Arrays;
+
+@SpringBootApplication
+@Import({
+        cat.smap.application.ApplicationConfig.class,
+        cat.smap.infrastructure.InfrastructureConfig.class,
+        cat.smap.domain.DomainConfig.class,
+        cat.smap.utils.UtilsConfig.class
 })
 public class ApiApplication {
     private final Environment env;
@@ -29,7 +26,7 @@ public class ApiApplication {
 
     @PostConstruct
     public void init() {
-//        SmapLogger.consoleLog(LogChannel.INFO, ">>> PERFILS ACTIUS: " + Arrays.toString(this.env.getActiveProfiles()));
+        SmapLogger.consoleLog(LogChannel.INFO, ">>> PERFILS ACTIUS: " + Arrays.toString(this.env.getActiveProfiles()));
     }
 
     public static void main(String[] args) {
