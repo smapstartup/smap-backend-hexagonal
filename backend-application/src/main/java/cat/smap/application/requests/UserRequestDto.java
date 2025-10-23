@@ -1,16 +1,17 @@
 package cat.smap.application.requests;
 
+
 import java.util.UUID;
 
-public class UserCreateDto {
+public class UserRequestDto {
+    private final UUID uuid;
     private final String email;
     private final String password;
-    private final UUID createdBy;
 
-    public UserCreateDto(String email, String password, UUID createdBy) {
+    public UserRequestDto(UUID uuid, String email, String password) {
+        this.uuid = uuid;
         this.email = email;
         this.password = password;
-        this.createdBy = createdBy;
     }
 
     public String getEmail() {
@@ -19,9 +20,5 @@ public class UserCreateDto {
 
     public String getPassword() {
         return password;
-    }
-
-    public UUID getCreatedBy() {
-        return createdBy;
     }
 }

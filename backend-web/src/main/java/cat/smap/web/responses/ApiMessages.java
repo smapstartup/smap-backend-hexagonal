@@ -17,6 +17,7 @@ public enum ApiMessages {
     GENERIC_ERROR(HttpStatus.INTERNAL_SERVER_ERROR, "Ha ocorregut un error al servidor."),
     FORBIDDEN(HttpStatus.FORBIDDEN, "Error. Manca autorització per resoldre aquesta sol·licitud."),
     SOURCE_LOCKED(HttpStatus.LOCKED, "El recurs sol·licitat es troba bloquejat per un altre usuari."),
+    ITEMS_FOUND(HttpStatus.OK, "S'han obtingut %d ítems"),
     ;
 
     private final HttpStatus status;
@@ -33,5 +34,9 @@ public enum ApiMessages {
 
     public String getMessage() {
         return message;
+    }
+
+    public String getMessageNumericParam(int param) {
+        return this.message.formatted(param);
     }
 }

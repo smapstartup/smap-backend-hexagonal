@@ -26,7 +26,18 @@ public class ApiApplication {
 
     @PostConstruct
     public void init() {
-        SmapLogger.consoleLog(LogChannel.INFO, ">>> PERFILS ACTIUS: " + Arrays.toString(this.env.getActiveProfiles()));
+        SmapLogger.consoleLog(
+                LogChannel.DEBUG,
+                """
+                \s
+                *************************************************\s
+                Inicialitzem l'aplicació\s
+                Perfil d'execució de l'aplicació: %s
+                *************************************************\s
+                """.formatted(
+                    Arrays.toString(this.env.getActiveProfiles())
+                )
+        );
     }
 
     public static void main(String[] args) {

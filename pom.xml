@@ -62,11 +62,11 @@
             <!-- / Spring Boot Starters -->
 
             <!-- Documentació API (Swagger / Springdoc) -->
-            <dependency>
-                <groupId>org.springdoc</groupId>
-                <artifactId>springdoc-openapi-starter-webmvc-ui</artifactId>
-                <version>2.5.0</version>
-            </dependency>
+<!--            <dependency>-->
+<!--                <groupId>org.springdoc</groupId>-->
+<!--                <artifactId>springdoc-openapi-starter-webmvc-ui</artifactId>-->
+<!--                <version>2.5.0</version>-->
+<!--            </dependency>-->
             <!-- / Documentació API (Swagger / Springdoc) -->
 
             <!-- MapStruct requerit per desenvolupar els Mappers -->

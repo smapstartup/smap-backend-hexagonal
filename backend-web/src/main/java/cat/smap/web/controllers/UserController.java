@@ -1,6 +1,8 @@
 package cat.smap.web.controllers;
 
 import cat.smap.application.requests.UserCreateDto;
+import cat.smap.application.requests.UserToDeleteDto;
+import cat.smap.application.requests.UserUpdateDto;
 import cat.smap.application.responses.UserResponseDto;
 import cat.smap.domain.services.UserService;
 import cat.smap.utils.exceptions.NotFoundException;
@@ -10,6 +12,10 @@ import io.swagger.v3.oas.annotations.tags.Tag;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+
+import java.util.List;
+import java.util.UUID;
+import java.util.stream.Collectors;
 
 @RestController
 @RequestMapping("/users")
@@ -22,13 +28,9 @@ public class UserController {
         this.userService = userService;
     }
 
-    @PostMapping(
+    @PostMapping(path = "/create",
             consumes = MediaType.APPLICATION_JSON_VALUE,
             produces = MediaType.APPLICATION_JSON_VALUE
-    )
-    @Tag(
-            name="createUser",
-            description="Punt final per crear un nou registre d'usuari a la Base de Dades."
     )
     public ResponseEntity<ApiResponse<UserResponseDto>> createUser(
             @RequestBody UserCreateDto dto
@@ -43,17 +45,47 @@ public class UserController {
                 ));
     }
 
-    @GetMapping(path = "/{id}",
+    @PatchMapping( path = "/edit",
+            consumes = MediaType.APPLICATION_JSON_VALUE,
             produces = MediaType.APPLICATION_JSON_VALUE
     )
-    @Tag(
-            name = "getUserById",
-            description = "Cerca a la Base de Dades un usuari amb l'Id indicat"
+    public ResponseEntity<ApiResponse<UserResponseDto>> patchUser(
+            @RequestBody UserUpdateDto dto
+    ){
+        UserResponseDto updated = userService.patchUser(dto);
+        return ResponseEntity
+                .status(ApiMessages.ITEM_UPDATED.getStatus())
+                .body(ApiResponse.of(
+                        ApiMessages.ITEM_UPDATED.getStatus(),
+                        ApiMessages.ITEM_UPDATED.getMessage(),
+                        updated
+                ));
+    }
+
+    @PutMapping(path = "/update",
+          consumes = MediaType.APPLICATION_JSON_VALUE,
+          produces = MediaType.APPLICATION_JSON_VALUE
     )
-    public ResponseEntity<ApiResponse<UserResponseDto>> getUserById(@PathVariable Long id){
+    public ResponseEntity<ApiResponse<UserResponseDto>> putUser(
+            @RequestBody UserUpdateDto dto
+    ){
+        UserResponseDto updated = userService.putUser(dto);
+        return ResponseEntity
+                .status(ApiMessages.ITEM_UPDATED.getStatus())
+                .body(ApiResponse.of(
+                        ApiMessages.ITEM_UPDATED.getStatus(),
+                        ApiMessages.ITEM_UPDATED.getMessage(),
+                        updated
+                ));
+    }
+
+    @GetMapping(path = "/find-by-uuid/{uuid}",
+            produces = MediaType.APPLICATION_JSON_VALUE
+    )
+    public ResponseEntity<ApiResponse<UserResponseDto>> getUserByUuid(@PathVariable UUID uuid){
 
         try {
-            UserResponseDto found = userService.findById(id);
+            UserResponseDto found = userService.findByUuid(uuid);
             return ResponseEntity
                     .status(ApiMessages.ITEM_FOUND.getStatus())
                     .body(ApiResponse.of(
@@ -70,6 +102,55 @@ public class UserController {
                             null)
                     );
         }
+    }
+
+    @PatchMapping(path = "/soft-delete",
+            consumes = MediaType.APPLICATION_JSON_VALUE,
+            produces = MediaType.APPLICATION_JSON_VALUE
+    )
+    public ResponseEntity<ApiResponse<UserResponseDto>> disableUser(
+            @RequestBody UserToDeleteDto dto
+    ){
+        UserResponseDto updated = userService.softDelete(dto);
+        return ResponseEntity
+                .status(ApiMessages.ITEM_UPDATED.getStatus())
+                .body(ApiResponse.of(
+                        ApiMessages.ITEM_UPDATED.getStatus(),
+                        ApiMessages.ITEM_UPDATED.getMessage(),
+                        updated
+                ));
+    }
+
+    @DeleteMapping( path = "/delete",
+            consumes = MediaType.APPLICATION_JSON_VALUE,
+            produces = MediaType.APPLICATION_JSON_VALUE
+    )
+    public ResponseEntity<ApiResponse<UserResponseDto>> deleteUser(
+            @RequestBody UserToDeleteDto dto
+    ){
+        UserResponseDto updated = userService.deleteUser(dto);
+        return ResponseEntity
+                .status(ApiMessages.ITEM_UPDATED.getStatus())
+                .body(ApiResponse.of(
+                        ApiMessages.ITEM_UPDATED.getStatus(),
+                        ApiMessages.ITEM_UPDATED.getMessage(),
+                        updated
+                ));
+    }
+
+    @GetMapping( path = "/find-all",
+            produces = MediaType.APPLICATION_JSON_VALUE
+    )
+    public ResponseEntity<ApiResponse<List<UserResponseDto>>> getAllUsers(){
+        List<UserResponseDto> users = userService.findAll();
+
+        return ResponseEntity
+                .status(ApiMessages.ITEMS_FOUND.getStatus())
+                .body(ApiResponse.of(
+                        ApiMessages.ITEMS_FOUND.getStatus(),
+                        ApiMessages.ITEMS_FOUND.getMessageNumericParam(users.size()),
+                        users
+                ));
     }
 
 }

@@ -29,6 +29,17 @@ public class SmapLogger {
         new SmapLogger(log, source);
     }
 
+    public static void debugging(String data){
+        new SmapLogger(LogChannel.DEBUG,
+                """
+                        \s
+                        *************************************************************\s
+                        %s
+                        *************************************************************\s
+                        \s
+                        """.formatted(data));
+    }
+
     private void outputTerminal(String output){
         switch (this.getLabel()) {
             case "[WARNING]" -> logger.warn(output);

@@ -7,5 +7,5 @@ import org.mapstruct.Mapper;
 @Mapper(componentModel = "spring")
 public interface UserServiceMapper {
     // Del Service cap al Controller
-    UserResponseDto toDto(User model);
+    UserResponseDto userDomainToUserDto(User model);
 }

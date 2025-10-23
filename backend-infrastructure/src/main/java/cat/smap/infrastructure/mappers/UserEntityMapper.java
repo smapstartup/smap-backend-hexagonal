@@ -7,9 +7,9 @@ import org.mapstruct.Mapper;
 @Mapper(componentModel = "spring")
 public interface UserEntityMapper {
     // Del Service cap al Repository
-    UserEntity toEntity(User user);
+    UserEntity userDomaintoUserEntity(User user);
 
     // Del Repository cap al Service
-    User toDomain(UserEntity entity);
+    User userEntityToUserDomain(UserEntity entity);
 
 }

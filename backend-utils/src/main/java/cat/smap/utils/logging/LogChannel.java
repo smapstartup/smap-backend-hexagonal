@@ -2,7 +2,7 @@ package cat.smap.utils.logging;
 
 public enum LogChannel implements TestsInfo {
     ASSERTS("[ASSERT]", "Asserció de %s", "logs/asserts.log"),
-    DEBUG("[DEBUG]", "Informació general", "logs/info.log"),
+    DEBUG("[DEBUG]", "Informació general", "logs/debug.log"),
     INFO("[INFO]", "Informació general", "logs/info.log"),
     WARNING("[WARNING]", "Errors no crítics, deprecated, etc", "logs/warning.log"),
     ERROR("[ERROR]", "Errors crítics del sistema", "logs/errors.log"),
