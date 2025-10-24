@@ -1,9 +1,8 @@
-package cat.smap.infrastructure.implementacions;
+package cat.smap.infrastructure.implementacions.users;
 
 import org.springframework.data.jpa.repository.JpaRepository;
-import cat.smap.infrastructure.entities.UserEntity;
+import cat.smap.infrastructure.entities.users.UserEntity;
 
-import java.util.Optional;
 import java.util.UUID;
 
 /**
@@ -11,6 +10,8 @@ import java.util.UUID;
  * contra la Base de Dades.
  * Aquesta serà emprada pel Repository, per executar les accions definides al adapter.
  */
-public interface UserJPA extends JpaRepository<UserEntity, Long> {
-    Optional<UserEntity> findByUuid(UUID uuid);
+public interface UserAdapter extends JpaRepository<UserEntity, Long> {
+    UserEntity findById(UUID id);
+    UserEntity findByPk(Long pk);
+    UserEntity findByUsername(String username);
 }

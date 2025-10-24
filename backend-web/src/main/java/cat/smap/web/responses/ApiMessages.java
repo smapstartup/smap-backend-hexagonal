@@ -6,18 +6,61 @@ import org.springframework.http.HttpStatus;
 
 public enum ApiMessages {
 
-    ITEM_FOUND(HttpStatus.OK, "S'ha recuperat un ítem."),
-    ITEM_NOT_FOUND(HttpStatus.OK, "No s'ha pogut recuperar l'ítem."),
-    ITEM_CREATED(HttpStatus.CREATED, "S'ha registrat un nou ítem."),
-    ITEM_NOT_CREATED(HttpStatus.CREATED, "No s'ha pogut registrar el nou ítem."),
-    ITEM_UPDATED(HttpStatus.OK, "S'ha actualitzat el ítem."),
-    ITEM_NOT_UPDATED(HttpStatus.CREATED, "No s'ha pogut actualitzar l'ítem."),
-    ITEM_DELETED(HttpStatus.OK, "L'ítem s'ha eliminat."),
-    ITEM_NOT_DELETED(HttpStatus.CREATED, "L'ítem no s'ha pogut eliminar."),
-    GENERIC_ERROR(HttpStatus.INTERNAL_SERVER_ERROR, "Ha ocorregut un error al servidor."),
-    FORBIDDEN(HttpStatus.FORBIDDEN, "Error. Manca autorització per resoldre aquesta sol·licitud."),
-    SOURCE_LOCKED(HttpStatus.LOCKED, "El recurs sol·licitat es troba bloquejat per un altre usuari."),
-    ITEMS_FOUND(HttpStatus.OK, "S'han obtingut %d ítems"),
+    ITEM_CREATED(
+            HttpStatus.CREATED,
+            "El nou registre s'ha creat satisfactòriament."
+    ),
+
+    ITEM_UPDATED(
+            HttpStatus.OK,
+            "El registre s'ha actualitzat satisfactòriament."
+    ),
+
+    ITEM_DELETED(
+            HttpStatus.OK,
+            "El registre s'ha eliminat satisfactòriament."
+    ),
+
+    ITEM_SOFT_DELETED_OK(
+            HttpStatus.OK,
+            "L'esborrat lògic s'ha aplicat satisfactòriament al registre sol·licitat."
+    ),
+
+    ITEM_SOFT_DELETED_KO(
+            HttpStatus.INTERNAL_SERVER_ERROR,
+            "L'esborrat lògic no s'ha pogut aplicar al registre sol·licitat."
+    ),
+
+    ITEM_NOT_FOUND(
+            HttpStatus.NOT_FOUND,
+            "No s'ha trobat cap registre coincident amb els vostres criteris: [%s] -> %s"
+    ),
+
+    ITEM_NOT_CREATED(
+            HttpStatus.INTERNAL_SERVER_ERROR,
+            "No s'ha pogut crear el registre."
+    ),
+
+    ITEM_NOT_UPDATED(
+            HttpStatus.INTERNAL_SERVER_ERROR,
+            "No s'ha pogut actualitzar el registre."
+    ),
+
+    ITEM_NOT_DELETED(
+            HttpStatus.INTERNAL_SERVER_ERROR,
+            "No s'ha pogut eliminar el registre."
+    ),
+
+    ERROR(
+            HttpStatus.INTERNAL_SERVER_ERROR,
+            "Error des del servidor"
+    ),
+
+    SUCCESS(
+         HttpStatus.OK,
+         "success"
+    ),
+
     ;
 
     private final HttpStatus status;
@@ -34,9 +77,5 @@ public enum ApiMessages {
 
     public String getMessage() {
         return message;
-    }
-
-    public String getMessageNumericParam(int param) {
-        return this.message.formatted(param);
     }
 }

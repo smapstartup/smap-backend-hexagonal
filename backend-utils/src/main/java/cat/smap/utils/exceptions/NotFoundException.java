@@ -1,8 +1,9 @@
 package cat.smap.utils.exceptions;
 
-public class NotFoundException extends RuntimeException {
+import java.util.Objects;
 
-    public NotFoundException(String resource) {
-        super("No hem trobat cap referència de " + resource);
+public class NotFoundException extends RuntimeException {
+    public NotFoundException(String message) {
+        super(Objects.requireNonNullElse(message, "Dades no trobades"));
     }
 }

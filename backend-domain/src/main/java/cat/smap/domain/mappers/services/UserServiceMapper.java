@@ -1,6 +1,6 @@
 package cat.smap.domain.mappers.services;
 
-import cat.smap.application.responses.UserResponseDto;
+import cat.smap.application.responses.users.UserResponseDto;
 import cat.smap.domain.models.pojos.User;
 import org.mapstruct.Mapper;
 

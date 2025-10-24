@@ -13,26 +13,26 @@ import java.util.UUID;
 public class BaseEntity {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
+    private Long pk;
 
     @Column(nullable = false, unique = true, updatable = false, columnDefinition = "uuid")
     @UuidGenerator
-    private UUID uuid;
+    private UUID id;
 
-    public Long getId() {
+    public Long getPk() {
+        return pk;
+    }
+
+    public void setPk(Long id) {
+        this.pk = id;
+    }
+
+    public UUID getId() {
         return id;
     }
 
-    public void setId(Long id) {
-        this.id = id;
-    }
-
-    public UUID getUuid() {
-        return uuid;
-    }
-
-    public void setUuid(UUID uuid) {
-        this.uuid = uuid;
+    public void setId(UUID uuid) {
+        this.id = uuid;
     }
 
     @CreationTimestamp
@@ -46,7 +46,7 @@ public class BaseEntity {
     @Column(name = "updated_at")
     private Instant updatedAt;
 
-    @Column(name = "updated_by")
+    @Column(name = "updated_by", nullable = false)
     private UUID updatedBy;
 
     @Column(name = "deleted_at")
@@ -106,16 +106,26 @@ public class BaseEntity {
     @PrePersist
     protected void onCreate() {
         this.createdAt = Instant.now();
+        this.updatedAt = this.createdAt;
         if( this.createdBy == null ) {
             setCreatedBy(CommonTools.getUUIDSystem());
         }
-        if ( this.updatedBy == null ) {
-            setUpdatedBy(CommonTools.getUUIDSystem());
-        }
+        setUpdatedBy(this.createdBy);
     }
 
     @PreUpdate
     protected void onUpdate() {
         this.updatedAt = Instant.now();
+        if( this.updatedBy == null ) {
+            setUpdatedBy(CommonTools.getUUIDSystem());
+        }
+    }
+
+    @PreRemove
+    protected void onDelete() {
+        this.deletedAt = Instant.now();
+        if( this.deletedBy == null ) {
+            setDeletedBy(CommonTools.getUUIDSystem());
+        }
     }
 }

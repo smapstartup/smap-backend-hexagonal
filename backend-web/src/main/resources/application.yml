@@ -7,10 +7,15 @@ spring:
     username: smapbcn
     password: devpass
 
+  sql:
+    init:
+      mode: always
+
   jpa:
     hibernate:
-      ddl-auto: update
-    show-sql: true
+      ddl-auto: create-drop
+    show-sql: false
     properties:
       hibernate:
         format_sql: true
+    defer-datasource-initialization: true

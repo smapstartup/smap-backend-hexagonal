@@ -1,18 +1,18 @@
-package cat.smap.application.requests;
+package cat.smap.application.requests.users;
 
 import java.util.UUID;
 
 public class UserToDeleteDto {
-    private final UUID uuid;
+    private final UUID id;
     private final UUID deletedBy;
 
-    public UserToDeleteDto(UUID uuid, UUID deletedBy) {
-        this.uuid = uuid;
+    public UserToDeleteDto(UUID id, UUID deletedBy) {
+        this.id = id;
         this.deletedBy = deletedBy;
     }
 
-    public UUID getUuid() {
-        return uuid;
+    public UUID getId() {
+        return id;
     }
 
     public UUID getDeletedBy() {

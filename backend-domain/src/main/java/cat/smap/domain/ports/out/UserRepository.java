@@ -9,11 +9,12 @@ import java.util.UUID;
  * Definim per contracte, les accions que el Service li podrà demanar al UserRepository i
  * que aquest, haurà d'implementar per executar-les contra la Base de Dades.
  */
-public interface UserAdapter {
-    User findById(Long id);
-    User findByUuid(UUID uuid);
+public interface UserRepository {
+    // User
+    User findById(UUID id);
+    User findByPk(Long pk);
     User save(User user);
     List<User> findAll();
-    User update(User user);
     User delete(User user);
+    User findByUsername(String username);
 }
